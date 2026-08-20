@@ -7,6 +7,7 @@ import ObservationLogger from "@/components/lab/ObservationLogger";
 import CoreBasicsModule from "@/components/modules/CoreBasicsModule";
 import GesturesModule from "@/components/modules/GesturesModule";
 import VariantsModule from "@/components/modules/VariantsModule";
+import SpringBenchModule from "@/components/modules/SpringBenchModule";
 
 export default function MotionLabHome() {
   const [activeModule, setActiveModule] = useState("01-basics");
@@ -71,10 +72,28 @@ export default function MotionLabHome() {
           </>
         )}
 
-        {/* Fallback Placeholder for Unimplemented Modules (04, 05) */}
+        {/* Module 04 */}
+        {activeModule === "04-springs" && (
+          <>
+            <Stage moduleTitle="04. Spring Physics Bench">
+              <SpringBenchModule />
+            </Stage>
+            <ObservationLogger
+              title="Phase 5 - Physics & Spring Dynamics Observations"
+              notes={[
+                "High stiffness creates energetic, snappy responses; low stiffness feels soft.",
+                "Damping acts as air/friction resistance: low damping causes bouncy overshoot oscillation.",
+                "Mass adds physical weight inertia: higher mass causes heavy momentum drift before stopping.",
+              ]}
+            />
+          </>
+        )}
+
+        {/* Fallback Placeholder for Unimplemented Modules (05) */}
         {activeModule !== "01-basics" &&
           activeModule !== "02-gestures" &&
-          activeModule !== "03-variants" && (
+          activeModule !== "03-variants" &&
+          activeModule !== "04-springs" && (
             <Stage moduleTitle={activeModule}>
               <div className="text-sm text-[#64748b] font-mono">
                 Module [{activeModule}] ready for implementation.
