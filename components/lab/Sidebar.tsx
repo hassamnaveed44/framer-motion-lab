@@ -11,7 +11,9 @@ const modules = [
   { id: "03-variants", label: "03. Variants & Staggering" },
   { id: "04-springs", label: "04. Spring Physics Bench" },
   { id: "05-presence", label: "05. AnimatePresence & Exit" },
+  { id: "06-layout", label: "06. Magic Layouts & Shared ID" },
 ];
+
 
 export default function Sidebar({ activeModule, onSelectModule }: SidebarProps) {
   return (

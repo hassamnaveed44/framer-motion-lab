@@ -9,6 +9,7 @@ import GesturesModule from "@/components/modules/GesturesModule";
 import VariantsModule from "@/components/modules/VariantsModule";
 import SpringBenchModule from "@/components/modules/SpringBenchModule";
 import PresenceModule from "@/components/modules/PresenceModule";
+import LayoutModule from "@/components/modules/LayoutModule";
 
 export default function MotionLabHome() {
   const [activeModule, setActiveModule] = useState("01-basics");
@@ -107,12 +108,30 @@ export default function MotionLabHome() {
           </>
         )}
 
+        {/* Module 06 */}
+        {activeModule === "06-layout" && (
+          <>
+            <Stage moduleTitle="06. Magic Layouts & Shared layoutId">
+              <LayoutModule />
+            </Stage>
+            <ObservationLogger
+              title="Phase 7 - FLIP Engine & Shared Layout Observations"
+              notes={[
+                "Adding the layout prop automatically calculates FLIP transforms between DOM reflows.",
+                "layoutId morphs elements seamlessly across different DOM components.",
+                "Shared layout indicators create smooth active tab highlight animations.",
+              ]}
+            />
+          </>
+        )}
+
         {/* Fallback Placeholder */}
         {activeModule !== "01-basics" &&
           activeModule !== "02-gestures" &&
           activeModule !== "03-variants" &&
           activeModule !== "04-springs" &&
-          activeModule !== "05-presence" && (
+          activeModule !== "05-presence" &&
+          activeModule !== "06-layout" && (
             <Stage moduleTitle={activeModule}>
               <div className="text-sm text-[#64748b] font-mono">
                 Module [{activeModule}] ready for implementation.
