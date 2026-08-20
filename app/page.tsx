@@ -10,6 +10,7 @@ import VariantsModule from "@/components/modules/VariantsModule";
 import SpringBenchModule from "@/components/modules/SpringBenchModule";
 import PresenceModule from "@/components/modules/PresenceModule";
 import LayoutModule from "@/components/modules/LayoutModule";
+import MotionValuesModule from "@/components/modules/MotionValuesModule";
 
 export default function MotionLabHome() {
   const [activeModule, setActiveModule] = useState("01-basics");
@@ -125,19 +126,22 @@ export default function MotionLabHome() {
           </>
         )}
 
-        {/* Fallback Placeholder */}
-        {activeModule !== "01-basics" &&
-          activeModule !== "02-gestures" &&
-          activeModule !== "03-variants" &&
-          activeModule !== "04-springs" &&
-          activeModule !== "05-presence" &&
-          activeModule !== "06-layout" && (
-            <Stage moduleTitle={activeModule}>
-              <div className="text-sm text-[#64748b] font-mono">
-                Module [{activeModule}] ready for implementation.
-              </div>
+        {/* Module 07 */}
+        {activeModule === "07-motionvalues" && (
+          <>
+            <Stage moduleTitle="07. Motion Values & Dynamic Transforms">
+              <MotionValuesModule />
             </Stage>
-          )}
+            <ObservationLogger
+              title="Phase 8 - useMotionValue & useTransform Observations"
+              notes={[
+                "useMotionValue tracks animated state without triggering React re-renders.",
+                "useTransform maps continuous input ranges (e.g. drag position x) into output rotation and opacity.",
+                "Direct transform binding maintains 60-120 FPS performance during complex swipe gestures.",
+              ]}
+            />
+          </>
+        )}
       </section>
     </div>
   );

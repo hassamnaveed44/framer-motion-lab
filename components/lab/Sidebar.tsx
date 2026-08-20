@@ -12,7 +12,9 @@ const modules = [
   { id: "04-springs", label: "04. Spring Physics Bench" },
   { id: "05-presence", label: "05. AnimatePresence & Exit" },
   { id: "06-layout", label: "06. Magic Layouts & Shared ID" },
+  { id: "07-motionvalues", label: "07. Motion Values & Transforms" },
 ];
+
 
 
 export default function Sidebar({ activeModule, onSelectModule }: SidebarProps) {
