@@ -1,69 +1,106 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { motion } from "motion/react"; 
+// Note: If using framer-motion directly, use: import { motion } from "framer-motion";
+
+export default function MotionLabHome() {
+  const [activeModule, setActiveModule] = useState("01-basics");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 min-h-[calc(100vh-140px)]">
+      {/* Sidebar Navigation */}
+      <aside className="lg:col-span-1 bg-white border border-[#e2e4e8] rounded-lg p-4 shadow-xs flex flex-col gap-2">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-[#64748b] mb-2 px-2">
+          Learning Modules
+        </h2>
+        
+        <button
+          onClick={() => setActiveModule("01-basics")}
+          className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeModule === "01-basics"
+              ? "bg-[#3b6280] text-white shadow-xs"
+              : "text-[#1e2022] hover:bg-[#f2f4f7]"
+          }`}
+        >
+          01. Core Motion & Tweens
+        </button>
+
+        <button
+          onClick={() => setActiveModule("02-gestures")}
+          className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeModule === "02-gestures"
+              ? "bg-[#3b6280] text-white shadow-xs"
+              : "text-[#1e2022] hover:bg-[#f2f4f7]"
+          }`}
+        >
+          02. Micro-Interactions & Gestures
+        </button>
+
+        <button
+          onClick={() => setActiveModule("03-variants")}
+          className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeModule === "03-variants"
+              ? "bg-[#3b6280] text-white shadow-xs"
+              : "text-[#1e2022] hover:bg-[#f2f4f7]"
+          }`}
+        >
+          03. Variants & Staggering
+        </button>
+
+        <button
+          onClick={() => setActiveModule("04-springs")}
+          className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeModule === "04-springs"
+              ? "bg-[#3b6280] text-white shadow-xs"
+              : "text-[#1e2022] hover:bg-[#f2f4f7]"
+          }`}
+        >
+          04. Spring Physics Bench
+        </button>
+
+        <button
+          onClick={() => setActiveModule("05-presence")}
+          className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-all ${
+            activeModule === "05-presence"
+              ? "bg-[#3b6280] text-white shadow-xs"
+              : "text-[#1e2022] hover:bg-[#f2f4f7]"
+          }`}
+        >
+          05. AnimatePresence & Exit
+        </button>
+      </aside>
+
+      {/* Main Interactive Stage Area */}
+      <section className="lg:col-span-3 flex flex-col gap-6">
+        {/* Active Stage Canvas */}
+        <div className="bg-white border border-[#e2e4e8] rounded-lg p-8 shadow-xs flex-1 flex flex-col items-center justify-center min-h-[380px] relative overflow-hidden">
+          <div className="absolute top-3 left-4 text-xs font-mono text-[#64748b]">
+            Stage View :: Active Module [{activeModule}]
+          </div>
+
+          {/* First Test Animation Object */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="w-32 h-32 bg-[#3b6280] rounded-lg shadow-sm flex items-center justify-center text-white font-medium text-sm"
+          >
+            Stage Box
+          </motion.div>
+        </div>
+
+        {/* Observation Log & Takeaways Panel */}
+        <div className="bg-white border border-[#e2e4e8] rounded-lg p-5 shadow-xs">
+          <h3 className="text-sm font-semibold text-[#1e2022] mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#3b6280]" />
+            Lab Observation & Concept Notes
+          </h3>
+          <p className="text-xs text-[#64748b] leading-relaxed">
+            Select a module from the sidebar to inspect props, experiment with physics parameter sliders, and observe DOM behavior under different transition curves.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
