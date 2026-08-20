@@ -8,6 +8,7 @@ import CoreBasicsModule from "@/components/modules/CoreBasicsModule";
 import GesturesModule from "@/components/modules/GesturesModule";
 import VariantsModule from "@/components/modules/VariantsModule";
 import SpringBenchModule from "@/components/modules/SpringBenchModule";
+import PresenceModule from "@/components/modules/PresenceModule";
 
 export default function MotionLabHome() {
   const [activeModule, setActiveModule] = useState("01-basics");
@@ -89,11 +90,29 @@ export default function MotionLabHome() {
           </>
         )}
 
-        {/* Fallback Placeholder for Unimplemented Modules (05) */}
+        {/* Module 05 */}
+        {activeModule === "05-presence" && (
+          <>
+            <Stage moduleTitle="05. AnimatePresence & Exit Animations">
+              <PresenceModule />
+            </Stage>
+            <ObservationLogger
+              title="Phase 6 - AnimatePresence & Exit Observations"
+              notes={[
+                "AnimatePresence delays DOM node destruction until the exit animation finishes.",
+                "mode='wait' ensures old content exits completely before new tab content enters.",
+                "mode='popLayout' takes exiting cards out of document flow so remaining items reflow immediately.",
+              ]}
+            />
+          </>
+        )}
+
+        {/* Fallback Placeholder */}
         {activeModule !== "01-basics" &&
           activeModule !== "02-gestures" &&
           activeModule !== "03-variants" &&
-          activeModule !== "04-springs" && (
+          activeModule !== "04-springs" &&
+          activeModule !== "05-presence" && (
             <Stage moduleTitle={activeModule}>
               <div className="text-sm text-[#64748b] font-mono">
                 Module [{activeModule}] ready for implementation.
